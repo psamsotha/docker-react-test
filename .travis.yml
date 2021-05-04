@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -f Dockerfile.dev --t psamsotha/react-app .
+  - docker build -f Dockerfile.dev -t psamsotha/react-app .
 
 script:
   - docker run psamsotha/react-app npm run test -- --watchAll=false
