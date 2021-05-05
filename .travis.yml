@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run psamsotha/react-app npm run test -- --watchAll=false
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-557623108041"
+  bucket_path: "docker-react"
+  on:
+    branch: main
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
