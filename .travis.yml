@@ -3,18 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -f Dockerfile.dev -t psamsotha/react-app .
+  - docker build -f dockerdev/Dockerfile -t psamsotha/docker-react .
 
 script:
-  - docker run psamsotha/react-app npm run test -- --watchAll=false
+  - docker run psamsotha/docker-react npm run test -- --watchAll=false
 
 deploy:
   provider: elasticbeanstalk
   region: "us-west-2"
-  app: "docker-react"
-  env: "docker-react-env"
+  app: "docker-react-app"
+  env: "docker-react-app-dev"
   bucket_name: "elasticbeanstalk-us-west-2-557623108041"
-  bucket_path: "docker-react"
+  bucket_path: "docker-react-app"
   on:
     branch: main
   access_key_id: "$AWS_ACCESS_KEY_ID"
